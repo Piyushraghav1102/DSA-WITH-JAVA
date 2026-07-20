@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Run Lc39",
+      "request": "launch",
+      "mainClass": "Lc39",
+      "cwd": "${fileDirname}",
+      "classPaths": ["${fileDirname}"]
+    }
+  ]
+}
