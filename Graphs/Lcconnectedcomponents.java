@@ -14,9 +14,14 @@ public class Lcconnectedcomponents {
             this.weight = weight;
         }
     }
+
     public static void BFStraversal(ArrayList<Edge>[] graph){
         boolean arr[]=new boolean[graph.length];
 
+        for (int i = 0; i < graph.length ; i++) {
+            if(!arr[i])
+                BFSutil(graph,arr);
+        }
 
 
     }
@@ -24,7 +29,6 @@ public class Lcconnectedcomponents {
     public static void BFSutil(ArrayList<Edge>[] graph,boolean[] vis){
 
         Queue<Integer> q=new LinkedList<>();
-
 
         q.add(0);
         while(!q.isEmpty()){
@@ -41,6 +45,34 @@ public class Lcconnectedcomponents {
                         q.add(e.dest);
                 }
             }
+
+        }
+
+    }
+
+
+    public static void DFStraversal(ArrayList<Edge>[] graph,int curr,boolean vis[]) {
+        boolean arr[]=new boolean[graph.length];
+
+        int count=0;
+        for (int i = 0; i < graph.length ; i++) {
+            if(!arr[i]) {
+                DFSutil(graph, i, arr);
+                count++;
+            }
+        }
+
+    }
+    public static void DFSutil(ArrayList<Edge>[] graph,int curr,boolean vis[]) {
+
+        System.out.print(curr+"->");
+        vis[curr]=true;
+
+        for (int i = 0; i <graph[curr].size() ; i++) {
+            Edge e=graph[curr].get(i);
+
+            if(!vis[e.dest])
+                DFStraversal(graph,e.dest,vis);
 
         }
 

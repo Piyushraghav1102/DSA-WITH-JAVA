@@ -71,28 +71,44 @@ public class Allviews {
         }
     }
 
-    public static void printbfsleftview(Node root){
+    public static void printbfsleftview(Node root,List<Integer> list){
+//
+//        Queue<pair> q=new LinkedList<>();
+//        Map<Integer,Integer> hm=new TreeMap();
+//
+//        if(root == null) return;
+//
+//        q.add(new pair(root,0));
+//
+//        while(q.size()>0){
+//            int currhd=q.peek().hd;
+//            pair curr=q.poll();
+//
+//            if(!hm.containsKey(currhd)) {
+//                hm.put(currhd, curr.curr.val);
+//            }
+//            if(curr.curr.left!=null)q.add(new pair(curr.curr.left,currhd+1));
+//            if(curr.curr.right!=null)q.add(new pair(curr.curr.right,currhd+1));
+//        }
+//
+//        for(Map.Entry<Integer,Integer> entry : hm.entrySet()){
+//            System.out.print(entry.getValue()+"->");
+//        }
 
-        Queue<pair> q=new LinkedList<>();
-        Map<Integer,Integer> hm=new TreeMap();
+        Queue<Node> q=new LinkedList<>();
+        q.add(root);
 
-        if(root == null) return;
+        while(!q.isEmpty()){
+            int n=q.size();
 
-        q.add(new pair(root,0));
+            for (int i = 0; i < n; i++) {
+                Node curr=q.poll();
 
-        while(q.size()>0){
-            int currhd=q.peek().hd;
-            pair curr=q.poll();
+                if(curr.left!=null)q.add(curr.left);
+                if(curr.right!=null)q.add(curr.right);
 
-            if(!hm.containsKey(currhd)) {
-                hm.put(currhd, curr.curr.val);
+                if(i==n-1)list.add(curr.val);
             }
-            if(curr.curr.left!=null)q.add(new pair(curr.curr.left,currhd+1));
-            if(curr.curr.right!=null)q.add(new pair(curr.curr.right,currhd+1));
-        }
-
-        for(Map.Entry<Integer,Integer> entry : hm.entrySet()){
-            System.out.print(entry.getValue()+"->");
         }
     }
 
@@ -151,6 +167,9 @@ public class Allviews {
         System.out.println();
         printbfsrightview(a);
         System.out.println();
-        printbfsleftview(a);
+//        printbfsleftview(a);
+
+        List<Integer> res = new LinkedList<>();
+
     }
 }
