@@ -24,7 +24,7 @@ public class Checkcycle {
                 System.out.print(Right.data + " -> ");
                 Right = Right.next;
             }
-
+//            System.out.println("null");   
         }
 
     }
