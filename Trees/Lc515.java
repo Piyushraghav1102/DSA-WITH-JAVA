@@ -22,6 +22,7 @@ public class Lc515 {
 
         q.add(root);
 
+
         while(!q.isEmpty()){
             int[] max={Integer.MIN_VALUE};
             int n=q.size();
