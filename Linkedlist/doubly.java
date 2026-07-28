@@ -16,7 +16,7 @@ class doubly{
     public void Addfirst(int data){
         
         size++;
-        
+        //
         Node head=new Node(data);
 
         if(Start==null){
