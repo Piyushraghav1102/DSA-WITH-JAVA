@@ -48,15 +48,40 @@ public class bipartite_grpah {
     public static boolean checkbiparttite_bfs(ArrayList<Edge>[] graph){
         int color[]=new int[graph.length];
 
-        for (int i = 0; i < graph.length; i++) {
+        for (int i = 0; i < color.length; i++) {
             color[i]=-1;
         }
 
         Queue<Integer> q=new LinkedList<>();
 
-        q.add(grp)
+        for (int j= 0; j < graph.length; j++) {
+            if(color[j]==-1){
+                 q.add(j);
+                 color[j]=0;
+                    //now bfs for this graph
+                while(!q.isEmpty()){
+                     int curr=q.poll();
+                    for (int i = 0; i <graph[curr].size() ; i++) {
+                        Edge e=graph[curr].get(i);
+
+                        if(color[e.dest]==-1){      //when neighbour has -1
+                             int neihbcol=color[curr]==0 ? 1 : 0;
+                             color[e.dest]=neihbcol;
+                             q.add(e.dest);
+                        }
+//
+//                        else if(color[e.dest]!=-1 && color[e.dest] != color[curr])
+//                            continue;               //when neighbout has diff color with curr edge
+
+                        else if(color[e.dest]==color[curr])
+                                return false;       // when edge has same colour as neighbour
 
 
+                    }
+                }
+            }
+        }
+    return true;
     }
 
     public static void main(String[] args) {
