@@ -39,21 +39,21 @@ public class Check_cycle {
         graph[4].add(new Edge(4,3));
 
 
-        System.out.println(detectcycle(graph));
+        System.out.println(detectcycleundirected(graph));
 
     }
 
-    public static boolean detectcycle(ArrayList<Edge>[] graph){
+    public static boolean detectcycleundirected(ArrayList<Edge>[] graph){
         boolean vis[]=new boolean[graph.length];
 
         for (int i = 0; i <graph.length ; i++) {
             if(!vis[i])
-                if(detectutiltraversal(graph,vis,i,-1))return true;
+                if(detectutiltraversalundirected(graph,vis,i,-1))return true;
         }
         return false;
     }
 
-    private static boolean detectutiltraversal(ArrayList<Edge>[] graph, boolean[] vis, int curr, int par) {
+    private static boolean detectutiltraversalundirected(ArrayList<Edge>[] graph, boolean[] vis, int curr, int par) {
 
         vis[curr]=true;
 
@@ -61,13 +61,40 @@ public class Check_cycle {
             Edge e=graph[curr].get(i);
 
             if(!vis[e.dest]){
-                if(detectutiltraversal(graph,vis,e.dest,curr))return true;
+                if(detectutiltraversalundirected(graph,vis,e.dest,curr))return true;
             }
 
             else if(vis[e.dest] && e.dest!= par)return true;    //always cycle exist
 
         }
             return false;
+    }
+
+    private static boolean detectcycledfsdirected(ArrayList<Edge>[]graph){
+        boolean vis[]=new boolean[graph.length];
+        boolean stack[]=new boolean[graph.length];
+
+        for (int i = 0; i < graph.length; i++) {
+
+            if(!vis[i]){
+                if(detectcycledirectedutil(graph,i,vis,stack))return true;
+            }
+        }
+    }
+
+    private static boolean detectcycledirectedutil(ArrayList<Edge>[] graph, int i, boolean[] vis, boolean[] stack) {
+        vis[i]=true;
+        stack[i]=true;
+
+        for (int j = 0; j <graph[i].size() ; j++) {
+            Edge e=graph[i].get(j);
+            if(stack[e.dest])return true;
+
+            if(!vis[e.dest] && detectcycledirectedutil(graph, e.dest, vis,stack))
+                return true;
+        }
+        stack[i]=false;
+        return false;
     }
 
     public static void main(String[] args) {

@@ -22,15 +22,15 @@ public class graph {
 
         q.add(0);
         while(!q.isEmpty()){
-            int v=q.poll();
+            int curr=q.poll();
 
-            if(arr[v]!=true){
-                System.out.println(v+"->");
-                arr[v]=true;
+            if(arr[curr]!=true){
+                System.out.println(curr+"->");
+                arr[curr]=true;
 
                 //add neighbours
-                for (int i = 0; i < graph[v].size(); i++) {
-                        Edge e= graph[v].get(i);
+                for (int i = 0; i < graph[curr].size(); i++) {
+                        Edge e= graph[curr].get(i);
                     if(arr[e.dest]!=true)
                             q.add(e.dest);
                 }
