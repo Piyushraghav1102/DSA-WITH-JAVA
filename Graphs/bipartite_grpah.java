@@ -84,6 +84,11 @@ public class bipartite_grpah {
     return true;
     }
 
+    public static boolean checkbipartite_dfs(ArrayList<Edge>[] graph,int[]color,int colorval){
+
+
+    }
+
     public static void main(String[] args) {
 
     }

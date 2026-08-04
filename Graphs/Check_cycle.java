@@ -80,6 +80,7 @@ public class Check_cycle {
                 if(detectcycledirectedutil(graph,i,vis,stack))return true;
             }
         }
+        return true;
     }
 
     private static boolean detectcycledirectedutil(ArrayList<Edge>[] graph, int i, boolean[] vis, boolean[] stack) {
